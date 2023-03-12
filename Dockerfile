@@ -9,7 +9,7 @@ RUN test -n "${timezone}" || (echo 'timezone required: use e.g. --build-arg time
 
 COPY libpng12-0_1.2.50-2+deb8u3_amd64.deb /tmp
 COPY libpng12-0_1.2.50-2+deb8u3_i386.deb /tmp
-COPY freetype-2.4.12.tar.gz /tmp
+ADD freetype-2.4.12.tar.gz /tmp
 ADD Quartus-web-13.1.0.162-linux.tar /tmp
 COPY QuartusSetup-13.1.4.182.run /tmp
 
@@ -39,7 +39,6 @@ RUN set -eux && \
   chmod +x QuartusSetup-13.1.4.182.run && \
   ./QuartusSetup-13.1.4.182.run --mode unattended --installdir /opt/quartus && \
   rm -rf QuartusSetup-13.1.4.182.run bitrock_installer*.log /opt/quartus/uninstall && \
-  tar -xf freetype-2.4.12.tar.gz && \
   cd freetype-2.4.12 && \
   ./configure --build=i686-pc-linux-gnu CFLAGS=-m32 CXXFLAGS=-m32 LDFLAGS=-m32 && \
   make -j $(nproc) && \
