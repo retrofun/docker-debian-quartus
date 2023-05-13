@@ -11,7 +11,7 @@ hostname="${repo}-${tag}-${username}"
 
 [[ ${#} -eq 0 ]] && set -- '/opt/quartus/quartus/bin/quartus' '--64bit'
 
-docker run --rm -it \
+docker run --rm \
   --security-opt seccomp=addr_no_randomize.json \
   -h "${hostname}" -l "${hostname}" --name "${hostname}" \
   -e "DISPLAY=${DISPLAY}" --ipc host \
@@ -21,5 +21,6 @@ docker run --rm -it \
   -u "${username}" \
   -v /home/"${username}":/home/"${username}" \
   -e "LANG=${LANG}" \
+  ${docker_run_options} \
   "${image}" \
   "${@}"
