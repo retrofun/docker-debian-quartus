@@ -18,6 +18,7 @@ RUN set -eux && \
   ln -s /usr/share/zoneinfo/"${timezone}" /etc/localtime && \
   dpkg --add-architecture i386 && \
   apt update && \
+  apt -y upgrade && \
   apt -y --no-install-recommends install apt-utils build-essential less locales procps psmisc tcl tk vim wget xauth xvfb \
     gcc-multilib g++-multilib lib32z1 lib32stdc++6 lib32gcc1 expat:i386 \
     fontconfig:i386 libfreetype6:i386 libexpat1:i386 libc6:i386 libgtk-3-0:i386 \
