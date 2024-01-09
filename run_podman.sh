@@ -22,6 +22,6 @@ podman run --rm \
   --userns keep-id:uid=$(id -u),gid=$(id -g) \
   -v /home/"${username}":/home/"${username}" \
   -e "LANG=${LANG}" \
-  ${docker_run_options} \
+  ${podman_run_options} \
   "${image}" \
   "${@}"
