@@ -17,6 +17,7 @@ RUN set -eux && \
   rm -f /etc/localtime && \
   ln -s /usr/share/zoneinfo/"${timezone}" /etc/localtime && \
   dpkg --add-architecture i386 && \
+  sed -i -r -e 's,^deb http://deb.debian.org/debian-security,deb http://archive.debian.org/debian-security,' /etc/apt/sources.list && \
   apt update && \
   apt -y upgrade && \
   apt -y --no-install-recommends install apt-utils build-essential less locales procps psmisc tcl tk vim wget xauth xvfb \
